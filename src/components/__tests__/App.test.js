@@ -1,13 +1,24 @@
 import React from "react";
-import ReactDOM from "react-dom";
+import { shallow } from "enzyme";
+
 import App from "../../App";
+import CommentBox from "../CommentBox";
+import CommentList from "../CommentList";
 
 it("shows a comment box", () => {
-  const div = document.createElement("div");
+  const wrapper = shallow(<App />);
 
-  ReactDOM.render(<App />, div);
-
-  // test for component existence here
-
-  ReactDOM.unmountComponentAtNode(div);
+  // test for the CommentBox component existence here
+  expect(wrapper.find(CommentBox).length).toBe(1);
 });
+
+it("shows a comment list", () => {
+  const wrapper = shallow(<App />);
+
+  // test for the CommentList component existence here
+  expect(wrapper.find(CommentList).length).toBe(1);
+});
+
+/*
+toEqual vs toBe -> toBe implies strict equality, irrelevant for primitives, important for objects
+*/
