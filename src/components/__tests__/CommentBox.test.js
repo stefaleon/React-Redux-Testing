@@ -30,11 +30,30 @@ it("has a text area that the users can type in", () => {
   wrapper
     // find the element
     .find("textarea")
-    // simulate the change event by providing the mock that sets the target.value
+    // simulate the "change" event by providing the mock that sets the target.value
     .simulate("change", { target: { value: "new comment" } });
   // then force the component update
   wrapper.update();
 
   // finally test that the text area receives the correct "value" prop
   expect(wrapper.find("textarea").prop("value")).toEqual("new comment");
+});
+
+it("gets the text area emptied on form submission", () => {
+  // first simulate the filling of the form with some data
+  wrapper
+    .find("textarea")
+    .simulate("change", { target: { value: "new comment" } });
+  // update
+  wrapper.update();
+  // confirm that data is properly filled (although it is the previous test case duplicated)
+  expect(wrapper.find("textarea").prop("value")).toEqual("new comment");
+
+  // then simulate the "submit" event
+  wrapper.find("form").simulate("submit");
+  // update again
+  wrapper.update();
+
+  // finally test that the text area receives the correct "value" prop - which should be empty
+  expect(wrapper.find("textarea").prop("value")).toEqual("");
 });
