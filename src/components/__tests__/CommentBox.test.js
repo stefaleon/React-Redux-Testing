@@ -26,34 +26,22 @@ it("has a text area and a button", () => {
   expect(wrapper.find("button").length).toBe(1);
 });
 
-it("has a text area that the users can type in", () => {
-  wrapper
-    // find the element
-    .find("textarea")
-    // simulate the "change" event by providing the mock that sets the target.value
-    .simulate("change", { target: { value: "new comment" } });
-  // then force the component update
-  wrapper.update();
+describe("the text area", () => {
+  beforeEach(() => {
+    wrapper
+      .find("textarea")
+      .simulate("change", { target: { value: "new comment" } });
+    wrapper.update();
+  });
 
-  // finally test that the text area receives the correct "value" prop
-  expect(wrapper.find("textarea").prop("value")).toEqual("new comment");
-});
+  it("receives the correct value that the users type in", () => {
+    expect(wrapper.find("textarea").prop("value")).toEqual("new comment");
+  });
 
-it("gets the text area emptied on form submission", () => {
-  // first simulate the filling of the form with some data
-  wrapper
-    .find("textarea")
-    .simulate("change", { target: { value: "new comment" } });
-  // update
-  wrapper.update();
-  // confirm that data is properly filled (although it is the previous test case duplicated)
-  expect(wrapper.find("textarea").prop("value")).toEqual("new comment");
+  it("gets emptied on form submission", () => {
+    wrapper.find("form").simulate("submit");
+    wrapper.update();
 
-  // then simulate the "submit" event
-  wrapper.find("form").simulate("submit");
-  // update again
-  wrapper.update();
-
-  // finally test that the text area receives the correct "value" prop - which should be empty
-  expect(wrapper.find("textarea").prop("value")).toEqual("");
+    expect(wrapper.find("textarea").prop("value")).toEqual("");
+  });
 });
