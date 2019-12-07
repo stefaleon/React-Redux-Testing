@@ -25,3 +25,16 @@ it("has a text area and a button", () => {
   expect(wrapper.find("textarea").length).toBe(1);
   expect(wrapper.find("button").length).toBe(1);
 });
+
+it("has a text area that the users can type in", () => {
+  wrapper
+    // find the element
+    .find("textarea")
+    // simulate the change event by providing the mock that sets the target.value
+    .simulate("change", { target: { value: "new comment" } });
+  // then force the component update
+  wrapper.update();
+
+  // finally test that the text area receives the correct "value" prop
+  expect(wrapper.find("textarea").prop("value")).toEqual("new comment");
+});
