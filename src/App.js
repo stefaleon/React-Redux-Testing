@@ -5,7 +5,6 @@ import CommentList from "./components/CommentList";
 function App() {
   return (
     <div className="App">
-      App
       <CommentBox />
       <CommentList />
     </div>
