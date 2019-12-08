@@ -1,19 +1,17 @@
 import React from "react";
-import { Provider } from "react-redux";
 
+import Root from "./Root";
 import CommentBox from "./components/CommentBox";
 import CommentList from "./components/CommentList";
 
-import store from "./store";
-
 function App() {
   return (
-    <Provider store={store}>
+    <Root>
       <div className="App">
         <CommentBox />
         <CommentList />
       </div>
-    </Provider>
+    </Root>
   );
 }
 

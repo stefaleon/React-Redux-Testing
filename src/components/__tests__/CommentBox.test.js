@@ -1,7 +1,7 @@
 import React from "react";
 import { mount } from "enzyme";
 
-import App from "../../App";
+import Root from "../../Root";
 import CommentBox from "../CommentBox";
 
 /*
@@ -13,7 +13,11 @@ unmounting renders must be taken care of -> done at afterEach()
 let wrapper;
 
 beforeEach(() => {
-  wrapper = mount(<CommentBox />);
+  wrapper = mount(
+    <Root>
+      <CommentBox />
+    </Root>
+  );
 });
 
 afterEach(() => {
