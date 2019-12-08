@@ -3,8 +3,8 @@ import { Provider } from "react-redux";
 
 import store from "./store";
 
-const Root = props => {
-  return <Provider store={store}>{props.children}</Provider>;
+const Root = ({ children, initialState }) => {
+  return <Provider store={{ ...store, initialState }}>{children}</Provider>;
 };
 
 export default Root;
