@@ -10,3 +10,8 @@ it("reduces actions of type SAVE_COMMENT", () => {
   const newState = commentsReducer([], action);
   expect(newState).toEqual(["new comment"]);
 });
+
+it("reduces actions of unknown type", () => {
+  const newState = commentsReducer(["initial state"], { type: "SOME_TYPE" });
+  expect(newState).toEqual(["initial state"]);
+});
