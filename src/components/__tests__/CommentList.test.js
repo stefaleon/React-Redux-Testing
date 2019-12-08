@@ -6,9 +6,13 @@ import CommentList from "../CommentList";
 
 let wrapper;
 
+const initialState = {
+  comments: ["1st comment", "2nd comment"]
+};
+
 beforeEach(() => {
   wrapper = mount(
-    <Root>
+    <Root initialState={initialState}>
       <CommentList />
     </Root>
   );
@@ -22,4 +26,6 @@ it("has an unordered list", () => {
   expect(wrapper.find("ul").length).toBe(1);
 });
 
-// it("shows one list element per comment", () => {});
+it("shows one list element per comment", () => {
+  expect(wrapper.find("li").length).toEqual(2);
+});
