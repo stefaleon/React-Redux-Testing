@@ -31,5 +31,5 @@ it("shows one list element per comment", () => {
 });
 
 it("displays the correct comment content", () => {
-  expect(wrapper.find("li:first-child").text()).toEqual("1st comment");
+  expect(wrapper.render().text()).toEqual("1st comment2nd comment");
 });
