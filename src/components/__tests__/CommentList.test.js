@@ -29,3 +29,7 @@ it("has an unordered list", () => {
 it("shows one list element per comment", () => {
   expect(wrapper.find("li").length).toEqual(2);
 });
+
+it("displays the correct comment content", () => {
+  expect(wrapper.find("li:first-child").text()).toEqual("1st comment");
+});
