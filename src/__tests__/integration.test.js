@@ -17,7 +17,7 @@ afterEach(() => {
   moxios.uninstall();
 });
 
-it("fetches a list of comments and displays it", () => {
+it("fetches a list of comments and displays it", done => {
   // render the App
   const wrapper = mount(
     <Root>
@@ -29,5 +29,10 @@ it("fetches a list of comments and displays it", () => {
   wrapper.find(".fetch-button").simulate("click");
 
   // expect a list of comments
-  expect(wrapper.find("li").lentgh).toBe(2);
+  moxios.wait(() => {
+    wrapper.update();
+    expect(wrapper.find("li").length).toEqual(2);
+    done();
+    wrapper.unmount();
+  });
 });
