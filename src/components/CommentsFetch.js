@@ -7,7 +7,7 @@ class CommentFetch extends React.Component {
 
   render() {
     return (
-      <button onClick={this.props.fetchComments}>
+      <button className="fetch-button" onClick={this.props.fetchComments}>
         Fetch comments from jsonplaceholder API
       </button>
     );

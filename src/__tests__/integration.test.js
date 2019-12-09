@@ -12,7 +12,9 @@ it("fetches a list of comments and displays it", () => {
     </Root>
   );
 
-  // TODO - fetch comments
+  // fetch comments
+  wrapper.find(".fetch-button").simulate("click");
 
-  // TODO - expect a list of comments
+  // expect a list of comments
+  expect(wrapper.find("li").lentgh).toBe(500);
 });
